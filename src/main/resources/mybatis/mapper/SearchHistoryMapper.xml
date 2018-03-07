@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudtravel.cloudtravelwebservice.mapper.SearchHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.cloudtravel.cloudtravelwebservice.model.SearchHistory" >
+    <id column="search_history_id" property="searchHistoryId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    search_history_id, user_id, content, create_time
+  </sql>
+  <insert id="insertSelective" parameterType="com.cloudtravel.cloudtravelwebservice.model.SearchHistory" >
+    insert into search_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="searchHistoryId != null" >
+        search_history_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="searchHistoryId != null" >
+        #{searchHistoryId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloudtravel.cloudtravelwebservice.model.SearchHistory" >
+    update search_history
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where search_history_id = #{searchHistoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

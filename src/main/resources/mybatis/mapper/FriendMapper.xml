@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloudtravel.cloudtravelwebservice.mapper.FriendMapper" >
+  <resultMap id="BaseResultMap" type="com.cloudtravel.cloudtravelwebservice.model.Friend" >
+    <id column="from_user_id" property="fromUserId" jdbcType="INTEGER" />
+    <id column="to_user_id" property="toUserId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    from_user_id, to_user_id, status
+  </sql>
+  <insert id="insertSelective" parameterType="com.cloudtravel.cloudtravelwebservice.model.Friend" >
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fromUserId != null" >
+        from_user_id,
+      </if>
+      <if test="toUserId != null" >
+        to_user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fromUserId != null" >
+        #{fromUserId,jdbcType=INTEGER},
+      </if>
+      <if test="toUserId != null" >
+        #{toUserId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloudtravel.cloudtravelwebservice.model.Friend" >
+    update friend
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where from_user_id = #{fromUserId,jdbcType=INTEGER}
+      and to_user_id = #{toUserId,jdbcType=INTEGER}
+  </update>
+</mapper>
