@@ -11,12 +11,12 @@ import java.io.Serializable;
 public class BaseJsonResponse implements Serializable, Cloneable {
 
     private String returnCode;//响应代码
-    private String errorMessage;//错误消息
+    private String returnMsg;//错误消息
     private Object obj;
 
     public BaseJsonResponse() {
         this.returnCode = "";
-        this.errorMessage = "";
+        this.returnMsg = "";
     }
 
 
@@ -28,12 +28,12 @@ public class BaseJsonResponse implements Serializable, Cloneable {
         this.returnCode = returnCode;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getReturnMsg() {
+        return returnMsg;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setReturnMsg(String errorMessage) {
+        this.returnMsg = errorMessage;
     }
 
     public Object getObj() {

@@ -43,4 +43,13 @@ public interface UserMapper {
         "where user_id = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);
+
+    @Select({
+            "select",
+            "user_id, user_name, password, email",
+            "from user",
+            "where email = #{accountNumber,jdbcType=INTEGER}"
+    })
+    @ResultMap("BaseResultMap")
+    User selectByAccountNumber(String accountNumber);
 }

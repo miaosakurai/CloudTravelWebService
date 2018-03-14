@@ -1,9 +1,9 @@
 package com.cloudtravel.cloudtravelwebservice.interceptor;
 
-import com.cloudtravel.cloudtravelwebservice.service.TokenService;
 import com.cloudtravel.cloudtravelwebservice.constants.CommonConstants;
 import com.cloudtravel.cloudtravelwebservice.dto.Token;
 import com.cloudtravel.cloudtravelwebservice.dto.response.BaseJsonResponse;
+import com.cloudtravel.cloudtravelwebservice.service.TokenService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +25,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
             httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             BaseJsonResponse baseJsonResponse = new BaseJsonResponse();
             baseJsonResponse.setReturnCode("E.1");
-            baseJsonResponse.setErrorMessage("没有权限");
+            baseJsonResponse.setReturnMsg("没有权限");
             JSONObject jsonObject = JSONObject.fromObject(baseJsonResponse);
             httpServletResponse.setCharacterEncoding("UTF8");
             httpServletResponse.getWriter().println(jsonObject.toString());

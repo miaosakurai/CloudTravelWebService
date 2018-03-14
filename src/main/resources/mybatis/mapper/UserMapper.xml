@@ -10,7 +10,7 @@
   <sql id="Base_Column_List" >
     user_id, user_name, password, email
   </sql>
-  <insert id="insertSelective" parameterType="com.cloudtravel.cloudtravelwebservice.model.User" >
+  <insert id="insertSelective" parameterType="com.cloudtravel.cloudtravelwebservice.model.User"  keyProperty="userId" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
