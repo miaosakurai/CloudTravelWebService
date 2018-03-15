@@ -1,5 +1,6 @@
 package com.cloudtravel.cloudtravelwebservice.controller;
 
+import com.cloudtravel.cloudtravelwebservice.annotation.Authentication;
 import com.cloudtravel.cloudtravelwebservice.bean.BaseBean;
 import com.cloudtravel.cloudtravelwebservice.constants.CommonConstants;
 import com.cloudtravel.cloudtravelwebservice.dto.Role;
@@ -22,6 +23,17 @@ public class UserController extends BaseController {
     private TokenService tokenService;
     @Autowired
     private UserMapper userMapper;
+
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.POST)
+    @Authentication(Role.User)
+    public BaseJsonResponse getUserInfo() {
+        System.out.println("getUserInfo()");
+        User user=userMapper.selectByPrimaryKey(getToken().getId());
+        BaseJsonResponse baseJsonResponse=new BaseJsonResponse();
+        baseJsonResponse.setObj(user);
+        baseJsonResponse.setReturnCode("0");
+        return baseJsonResponse;
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public BaseJsonResponse login(@RequestBody UserLoginRequest request) {
@@ -89,6 +101,8 @@ public class UserController extends BaseController {
         }
         return baseJsonResponse;
     }
+
+
 
 
 
